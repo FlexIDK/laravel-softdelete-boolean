@@ -1,0 +1,30 @@
+{
+    "name": "flexidk/laravel-softdeletes-boolean",
+    "type": "library",
+    "description": "Laravel 9 soft deletes optimization for high load queries",
+    "keywords": [
+        "LaravelSoftDeletesBoolen",
+        "Laravel",
+        "Laravel 9",
+        "SoftDeletes"
+    ],
+    "homepage": "https://github.com/FlexIDK/laravel-softdeletes-boolean",
+    "license": "MIT",
+    "require": {
+        "illuminate/database": "~9",
+        "illuminate/support": "~9",
+        "php" : "~8"
+    },
+    "autoload": {
+        "psr-4": {
+            "FlexIdk\\LaravelSoftDeletesBoolean\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "FlexIdk\\LaravelSoftDeletesBoolean\\SoftDeletesBooleanServiceProvider"
+            ]
+        }
+    }
+}
