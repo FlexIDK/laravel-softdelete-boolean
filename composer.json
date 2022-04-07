@@ -8,6 +8,7 @@
         "Laravel 9",
         "SoftDeletes"
     ],
+    "version": "1.0.1",
     "homepage": "https://github.com/FlexIDK/laravel-softdeletes-boolean",
     "license": "MIT",
     "require": {
