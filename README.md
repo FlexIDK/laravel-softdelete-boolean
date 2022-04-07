@@ -11,7 +11,7 @@ Via Composer
 $ composer require idk/laravel-softdeletes-boolean
 ```
 
-Add `FlexIdk\LaravelSoftDeletesBoolean` trait to models with soft deletes.
+Add `One23\LaravelSoftDeletesBoolean` trait to models with soft deletes.
 
 Then create and run migration to add soft delete boolean field
 ```php
@@ -25,21 +25,12 @@ If you want to use this package for existing project you can use built-in comman
 php artisan softdeletes-boolean:migrate
 ```
 
-before append to ./config/app.php
-
-```php
-return [
-    ...
-    \FlexIdk\LaravelSoftDeletesBoolean\SoftDeletesBooleanServiceProvider::class,
-    ...
-];
-```
-
 Also you can change default column name `is_deleted` to any other by setting static property `IS_DELETED`of certain model
 
-Versions compatibility
+## Versions compatibility
+
 ``` bash
-For Laravel 9 - laravel-softdeletes-boolean 1.*
+For Laravel 9 - laravel-softdeletes-boolean v1.*
 ```
 
 ## Change log

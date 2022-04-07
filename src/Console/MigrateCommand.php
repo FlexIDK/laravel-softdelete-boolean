@@ -1,6 +1,6 @@
 <?php
 
-namespace FlexIdk\LaravelSoftDeletesBoolean\Console;
+namespace One23\LaravelSoftDeletesBoolean\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;

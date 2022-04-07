@@ -1,6 +1,6 @@
 <?php
 
-namespace FlexIdk\LaravelSoftDeletesBoolean;
+namespace One23\LaravelSoftDeletesBoolean;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

@@ -1,9 +1,9 @@
 <?php
 
-namespace FlexIdk\LaravelSoftDeletesBoolean;
+namespace One23\LaravelSoftDeletesBoolean;
 
 use Illuminate\Support\ServiceProvider;
-use FlexIdk\LaravelSoftDeletesBoolean\Console\MigrateCommand;
+use One23\LaravelSoftDeletesBoolean\Console\MigrateCommand;
 
 class SoftDeletesBooleanServiceProvider extends ServiceProvider
 {

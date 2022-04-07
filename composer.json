@@ -1,5 +1,5 @@
 {
-    "name": "flexidk/laravel-softdeletes-boolean",
+    "name": "one23/laravel-softdeletes-boolean",
     "type": "library",
     "description": "Laravel 9 soft deletes optimization for high load queries",
     "keywords": [
@@ -17,13 +17,13 @@
     },
     "autoload": {
         "psr-4": {
-            "FlexIdk\\LaravelSoftDeletesBoolean\\": "src"
+            "One23\\LaravelSoftDeletesBoolean\\": "src"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "FlexIdk\\LaravelSoftDeletesBoolean\\SoftDeletesBooleanServiceProvider"
+                "One23\\LaravelSoftDeletesBoolean\\SoftDeletesBooleanServiceProvider"
             ]
         }
     }

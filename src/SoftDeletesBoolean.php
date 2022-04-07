@@ -1,6 +1,6 @@
 <?php
 
-namespace FlexIdk\LaravelSoftDeletesBoolean;
+namespace One23\LaravelSoftDeletesBoolean;
 
 /**
  * @method static static|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder withTrashed(bool $withTrashed = true)
