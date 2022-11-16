@@ -10,7 +10,7 @@ class MigrateCommand extends Command
 {
     protected $signature = 'softdeletes-boolean:migrate';
 
-    protected $description = 'Migrate existing soft deletes into is_deleted column';
+    protected $description = "Migrate existing soft deletes into 'is_deleted' column";
 
     /**
      * @return mixed
@@ -24,9 +24,9 @@ class MigrateCommand extends Command
             return;
         }
 
-        $field_name = $this->ask('Provide field name. If is_deleted than leave blank', 'is_deleted');
+        $field_name = $this->ask("Provide field name. If 'is_deleted' than leave blank", 'is_deleted');
 
-        $old_field_name = $this->ask('Provide old field name. If deleted_at than leave blank', 'deleted_at');
+        $old_field_name = $this->ask("Provide old field name. If 'deleted_at' than leave blank", 'deleted_at');
 
         try {
             DB::table($table)

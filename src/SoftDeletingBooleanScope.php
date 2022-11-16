@@ -49,7 +49,7 @@ class SoftDeletingBooleanScope implements Scope
     }
 
     /**
-     * Get the "is_deleted" column for the builder.
+     * Get the "deleted" column for the builder.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $builder
      * @return string

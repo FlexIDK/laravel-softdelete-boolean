@@ -195,7 +195,7 @@ trait SoftDeletesBoolean
     }
 
     /**
-     * Get the name of the "deleted at" column.
+     * Get the name of the "is_deleted" column.
      *
      * @return string
      */

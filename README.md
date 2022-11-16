@@ -8,10 +8,10 @@ Boolean field is much better for indexing instead of unique timestamps.
 Via Composer
 
 ``` bash
-$ composer require idk/laravel-softdeletes-boolean
+$ composer require one23/laravel-softdeletes-boolean
 ```
 
-Add `One23\LaravelSoftDeletesBoolean` trait to models with soft deletes.
+Add `One23\LaravelSoftDeletesBoolean\SoftDeletesBoolean` trait to models with soft deletes.
 
 Then create and run migration to add soft delete boolean field
 ```php
