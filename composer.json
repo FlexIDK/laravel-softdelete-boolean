@@ -10,13 +10,13 @@
         "Soft deletes",
         "laravel boolean soft deletes"
     ],
-    "version": "1.0.2",
+    "version": "1.0.3",
     "homepage": "https://github.com/FlexIDK/laravel-softdeletes-boolean",
     "license": "MIT",
     "require": {
-        "illuminate/database": "~9",
-        "illuminate/support": "~9",
-        "php" : "~8"
+        "php" : "~8",
+        "illuminate/database": "^v9|^v10",
+        "illuminate/support": "^v9|^v10"
     },
     "autoload": {
         "psr-4": {
