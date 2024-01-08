@@ -6,6 +6,9 @@ namespace One23\LaravelSoftDeletesBoolean;
  * @method static \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder withTrashed(bool $withTrashed = true)
  * @method static \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder withoutTrashed()
+ *
+ * @const string IS_DELETED
+ * @const string DELETED_AT
  */
 trait SoftDeletesBoolean
 {
@@ -33,8 +36,18 @@ trait SoftDeletesBoolean
      */
     public function initializeSoftDeletes()
     {
-        if (! isset($this->casts[$this->getIsDeletedColumn()])) {
+        if (
+            $this->getIsDeletedColumn() &&
+            ! isset($this->casts[$this->getIsDeletedColumn()])
+        ) {
             $this->casts[$this->getIsDeletedColumn()] = 'boolean';
+        }
+
+        if (
+            $this->getDeletedAtColumn() &&
+            ! isset($this->casts[$this->getDeletedAtColumn()])
+        ) {
+            $this->casts[$this->getDeletedAtColumn()] = 'datetime';
         }
     }
 
@@ -51,7 +64,7 @@ trait SoftDeletesBoolean
 
         $this->forceDeleting = true;
 
-        return tap($this->delete(), function ($deleted) {
+        return tap($this->delete(), function($deleted) {
             $this->forceDeleting = false;
 
             if ($deleted) {
@@ -67,7 +80,7 @@ trait SoftDeletesBoolean
      */
     public function forceDeleteQuietly()
     {
-        return static::withoutEvents(fn () => $this->forceDelete());
+        return static::withoutEvents(fn() => $this->forceDelete());
     }
 
     /**
@@ -78,7 +91,7 @@ trait SoftDeletesBoolean
     protected function performDeleteOnModel()
     {
         if ($this->forceDeleting) {
-            return tap($this->setKeysForSaveQuery($this->newModelQuery())->forceDelete(), function () {
+            return tap($this->setKeysForSaveQuery($this->newModelQuery())->forceDelete(), function() {
                 $this->exists = false;
             });
         }
@@ -98,6 +111,12 @@ trait SoftDeletesBoolean
         $time = $this->freshTimestamp();
 
         $columns = [$this->getIsDeletedColumn() => 1];
+
+        $columnAt = $this->getDeletedAtColumn();
+        if ($columnAt) {
+            $columns[$columnAt] = $this->fromDateTime($time);
+            $this->{$columnAt} = $time;
+        }
 
         $this->{$this->getIsDeletedColumn()} = 1;
 
@@ -130,6 +149,11 @@ trait SoftDeletesBoolean
 
         $this->{$this->getIsDeletedColumn()} = 0;
 
+        $columnAt = $this->getDeletedAtColumn();
+        if ($columnAt) {
+            $this->{$columnAt} = null;
+        }
+
         // Once we have saved the model, we will fire the "restored" event so this
         // developer will do anything they need to after a restore operation is
         // totally finished. Then we will return the result of the save call.
@@ -149,7 +173,7 @@ trait SoftDeletesBoolean
      */
     public function restoreQuietly()
     {
-        return static::withoutEvents(fn () => $this->restore());
+        return static::withoutEvents(fn() => $this->restore());
     }
 
     /**
@@ -159,7 +183,7 @@ trait SoftDeletesBoolean
      */
     public function trashed()
     {
-        return !!$this->{$this->getIsDeletedColumn()};
+        return (bool)$this->{$this->getIsDeletedColumn()};
     }
 
     /**
@@ -234,7 +258,7 @@ trait SoftDeletesBoolean
      */
     public function getIsDeletedColumn()
     {
-        return defined(static::class.'::IS_DELETED') ? static::IS_DELETED : 'is_deleted';
+        return defined(static::class . '::IS_DELETED') ? static::IS_DELETED : 'is_deleted';
     }
 
     /**
@@ -245,5 +269,15 @@ trait SoftDeletesBoolean
     public function getQualifiedIsDeletedColumn()
     {
         return $this->qualifyColumn($this->getIsDeletedColumn());
+    }
+
+    public function getDeletedAtColumn()
+    {
+        return defined(static::class . '::DELETED_AT') ? static::DELETED_AT : null;
+    }
+
+    public function getQualifiedDeletedAtColumn()
+    {
+        return $this->qualifyColumn($this->getDeletedAtColumn());
     }
 }

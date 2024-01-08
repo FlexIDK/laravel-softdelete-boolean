@@ -14,7 +14,7 @@ class SoftDeletesBooleanServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                MigrateCommand::class
+                MigrateCommand::class,
             ]);
         }
     }
@@ -22,7 +22,5 @@ class SoftDeletesBooleanServiceProvider extends ServiceProvider
     /**
      * @return void
      */
-    public function register()
-    {
-    }
+    public function register() {}
 }

@@ -19,8 +19,9 @@ class MigrateCommand extends Command
     {
         $table = $this->ask('Provide table name');
 
-        if(!Schema::hasTable($table)) {
+        if (! Schema::hasTable($table)) {
             $this->error('Wrong table name. Try again, please');
+
             return;
         }
 
@@ -31,20 +32,16 @@ class MigrateCommand extends Command
         try {
             DB::table($table)
                 ->orderBy('id', 'desc')
-                    ->chunk(100, function ($items) use ($table, $field_name, $old_field_name) {
-                        foreach ($items as $item) {
-
-                            DB::table($table)
-                                ->where('id', $item->id)
-                                ->update([$field_name => !is_null($item->$old_field_name)]);
-                        }
-                    })
-            ;
+                ->chunk(100, function($items) use ($table, $field_name, $old_field_name) {
+                    foreach ($items as $item) {
+                        DB::table($table)
+                            ->where('id', $item->id)
+                            ->update([$field_name => ! is_null($item->$old_field_name)]);
+                    }
+                });
 
             $this->info('Table has been migrated!');
-
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
     }

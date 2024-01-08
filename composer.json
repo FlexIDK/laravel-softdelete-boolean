@@ -10,13 +10,26 @@
         "Soft deletes",
         "laravel boolean soft deletes"
     ],
-    "version": "v1.0.4",
+    "version": "v1.1.0",
     "homepage": "https://github.com/FlexIDK/laravel-softdeletes-boolean",
     "license": "MIT",
     "require": {
         "php" : ">=8",
         "illuminate/database": ">=v9",
-        "illuminate/support": ">=v9"
+        "illuminate/support": ">=v9",
+        "illuminate/console": ">=v9"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "~1.10",
+        "laravel/pint": "~v1.13"
+    },
+    "scripts": {
+        "pint": "./vendor/laravel/pint/builds/pint",
+        "phpstan": "./vendor/bin/phpstan analyse --memory-limit=2G",
+        "code-quality": [
+            "@pint",
+            "@phpstan"
+        ]
     },
     "autoload": {
         "psr-4": {
